@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include django_hoptcha/static *
+recursive-include django_hoptcha/templates *
+recursive-include django_hoptcha/templatetags *.py

@@ -1,0 +1,110 @@
+{% load static hoptcha_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoptcha Demo</title>
+    <script src="{% static 'django_hoptcha/hoptcha.js' %}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 { color: #333; }
+        nav {
+            background-color: #222;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        form {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 400px;
+        }
+        .my-button, input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .my-button:hover, input[type="submit"]:hover {
+            background-color: #555;
+        }
+        input[type="text"], input[type="password"], input[type="date"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            box-sizing: border-box;
+        }
+        #custom-captcha-modal {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Custom CAPTCHA Form</h1>
+    <form id="demo-form">
+        <input type="text" name="name" placeholder="Your name" required>
+        <button class="my-button" type="submit">Submit</button>
+    </form>
+
+    <div id="custom-captcha-modal">
+        <h3>Verify You're Human</h3>
+        <iframe id="custom-captcha-frame" style="width: 100%; height: 250px; border: none;"></iframe>
+        <button class="my-button" onclick="closeCaptcha()">Cancel</button>
+    </div>
+
+    <script>
+        function closeCaptcha() {
+            const modal = document.getElementById("custom-captcha-modal");
+            if (modal) modal.style.display = "none";
+        }
+
+        const demoForm = document.getElementById("demo-form");
+
+        if (demoForm) {
+            demoForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(demoForm);
+                const payload = {};
+
+                for (const [key, value] of formData.entries()) {
+                    payload[key] = value;
+                }
+
+                payload["captcha_token"] = "init";
+
+                hoptchaPost('/submit/', payload, function (data) {
+                    closeCaptcha();
+                    alert(data.success);
+                }, function (error) {
+                    alert(error);
+                }, function renderCustomCaptcha(url) {
+                    const frame = document.getElementById("custom-captcha-frame");
+                    const modal = document.getElementById("custom-captcha-modal");
+
+                    if (frame) frame.src = url;
+                    if (modal) modal.style.display = "block";
+                });
+            });
+        }
+    </script>
+</body>
+</html>
