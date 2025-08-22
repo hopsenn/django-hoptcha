@@ -67,8 +67,8 @@ python manage.py collectstatic
 Add the following to your `settings.py`:
 
 ```python
-HOPTCHA_URL = 'https://your-hoptcha-domain.com/captcha/validate/'
-HOPTCHA_VERIFY_URL = 'https://your-hoptcha-domain.com/captcha/'
+HOPTCHA_URL = 'https://your-hoptcha-domain.com/api/v1/captcha/'
+HOPTCHA_VERIFY_URL = 'https://your-hoptcha-domain.com/api/v1/captcha/validate/'
 HOPTCHA_CLIENT_ID = 'your-client-key'
 HOPTCHA_CLIENT_SECRET = 'your-secret-key'
 ```

@@ -1,27 +1,3 @@
-"""
-MIT License
-
-Copyright (c) 2025 Hopsenn
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,10 +28,10 @@ INSTALLED_APPS = [
     'django_hoptcha'
 ]
 
-CAPTCHA_VERIFY_URL = 'http://127.0.0.1:8000/captcha/validate/'
-CAPTCHA_GENERATE_URL = 'http://127.0.0.1:8000/captcha/'
-CAPTCHA_PUBLIC_KEY = 'Pfv5wvutNRpeg75dTNyCE5VXozyhCnqVHWPtiRSl'
-CAPTCHA_PRIVATE_KEY = 'l-qt4GG5Uz4MDJ2Y-62-55I5dtSgSarWaps_pz2F6CjHbvIEopxpl_DaiJv1wzxwscJxqrYaHnV7Tvb70zAmDw'
+HOPTCHA_VERIFY_URL = 'http://127.0.0.1:8000/api/v1/captcha/validate/'
+HOPTCHA_URL = 'http://127.0.0.1:8000/api/v1/captcha/'
+HOPTCHA_CLIENT_ID = '8XNm93LHPIvH6qc1KispyPilvMu19K81-vQkFkMj'
+HOPTCHA_CLIENT_SECRET = '5fWNsYjjAgQW6y7uFfmkZvxQJe2C-Ui7ttQDnVPHgi7OWhgDtNBC6WUBKOIrFzMkENKd2mfoAx-uwA'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
